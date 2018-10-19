@@ -34,5 +34,10 @@ struct Tbloc
 //defiir le buffer comme une structure de Tbloc
 typedef struct Tbloc Buffer;
 
-
+typedef struct entete entete;
+struct entete
+{
+    int nbbloc;
+    int cpt_insert;
+};
 #endif // CONSTANTE_H_INCLUDED
