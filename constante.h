@@ -40,4 +40,10 @@ struct entete
     int nbbloc;
     int cpt_insert;
 };
+typedef struct TOF TOF;
+struct TOF
+{
+    FILE *fichier;
+    entete Entete;
+};
 #endif // CONSTANTE_H_INCLUDED

@@ -3,10 +3,10 @@
 #include "Machine_abs_TOF.h"
 int main()
 {
-    date DATE;
-    scanf("%[^-]d-%[^-]d-%d",&DATE.jour,&DATE.mois,&DATE.annee);
-    printf("%d %d %d ",DATE.jour,DATE.mois,DATE.annee);
-
+    TOF test;
+    test.Entete.cpt_insert=50;
+    Ouvrir_TOF(&test,"test.txt",'A');
+    printf("%d %d",test.Entete.cpt_insert,test.Entete.nbbloc);
     printf("Hello world!\n");
     system("pause");
     return 0;

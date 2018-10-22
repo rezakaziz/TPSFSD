@@ -3,7 +3,7 @@
 #include "constante.h"
 
 //Ouvrir un fichier f, mode='a' pour ancien ou 'n' pour nouveau
-void Ouvrir_TOF(FILE *f, char nomfichier[TAILLE_NOM], char mode);
+void Ouvrir_TOF(TOF *f, char nomfichier[TAILLE_NOM], char mode);
 //fermer le fichier f
 void Fermer_TOF(FILE *f);
 //lire le contenu de bloc i dans Buf
