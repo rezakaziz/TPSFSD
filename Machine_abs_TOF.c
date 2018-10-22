@@ -13,8 +13,11 @@ void Ouvrir_TOF(TOF *f, char nomfichier[TAILLE_NOM], char mode)
         f->fichier=fopen(nomfichier,"rb+");
         if (f->fichier!=NULL)
         {
+            f->Entete.cpt_insert=0;
+            f->Entete.nbbloc=0;
+            /*
             rewind(f->fichier);
-            fread(&f->Entete,sizeof(entete),1,f->fichier);
+            fread(&f->Entete,sizeof(entete),1,f->fichier);*/
         }
         else printf("Impossible d'ouvrir le fichier");
     }
@@ -32,22 +35,29 @@ void Ouvrir_TOF(TOF *f, char nomfichier[TAILLE_NOM], char mode)
     else printf("Mode d'ouverture incorrecte");
 }
 
-/*
+
 //fermer le fichier f
-void Fermer_TOF(FILE *f)
+void Fermer_TOF(TOF *f)
 {
-    fclose(f);
-    f=NULL;
-}
-//lire le contenu de bloc i dans Buf
-int LireDir_TOF(FILE *f,int i, Buffer buf)//return -1 si on a pas pu lire le bloc et 0 si on a lit un bloc
-{
-    if (f!=NULL)
+    if (f->fichier!=NULL)
     {
-        if(Entete_TOF(f,1)>i)
+        rewind(f->fichier);
+        fwrite(&f->Entete,sizeof(entete),1,f->fichier);
+        fclose(f->fichier);
+        f=NULL;
+    }
+}
+
+//lire le contenu de bloc i dans Buf
+int LireDir_TOF(TOF *f,int i, Buffer *buf)//return -1 si on a pas pu lire le bloc et 0 si on a lit un bloc
+{
+    if (f->fichier!=NULL)
+    {
+        if(Entete_TOF(f,0)>=i)
         {
-            fseek(f,sizeof(entete)+i*sizeof(Buffer),SEEK_SET);
-            fread(&buf,sizeof(Buffer),1,f);
+            fseek(f->fichier,sizeof(entete)+(i-1)*sizeof(Buffer),SEEK_SET);
+            fread(buf,sizeof(Buffer),1,f->fichier);
+
             return 0;
         }
 
@@ -55,25 +65,59 @@ int LireDir_TOF(FILE *f,int i, Buffer buf)//return -1 si on a pas pu lire le blo
     return -1;
 }
 
-//Ecrire le contenu de buffer dans le fichier au bloc i
-int EcrireDir_TOF(FILE *f,int i, Buffer buf)
+//Ecrire le contenu de buffer dans le fichier au bloc i//les bloc sont numeroté a partir de 1
+int EcrireDir_TOF(TOF *f,int i, Buffer buf)
 {
-    if (f!=NULL)
+    if (f->fichier!=NULL)
     {
-        fseek(f,sizeof(entete)+i*sizeof(Buffer),SEEK_SET);
-        fwrite(&buf,sizeof(Buffer),1,f);
+        fseek(f->fichier,sizeof(entete)+(i-1)*sizeof(Buffer),SEEK_SET);
+        fwrite(&buf,sizeof(Buffer),1,f->fichier);
         Aff_entete_TOF(f,1,Entete_TOF(f,1)+1);
+        /***Il faut allouer des block ****/
+        Aff_entete_TOF(f,0,Entete_TOF(f,0)+1);
+
+        return 0;
     }
+    return -1;
 }
 
 
 //retourner la taille de la i eme caracteristique de fichier
-int Entete_TOF( FILE *f, int i )
+int Entete_TOF( TOF *f, int i )
 {
-    entete Entetef;
-    if (f!=NULL)
+    if (f->fichier!=NULL)
     {
+       switch (i)
+       {
+       case 0:
+        return f->Entete.nbbloc;
+        break;
+       case 1:
+        return f->Entete.cpt_insert;
+        break;
+       default:
+        printf("La caracteristique n'existe pas");
+       }
 
     }
+    return -1;
 }
-*/
+int Aff_entete_TOF( TOF *f,int i,int val )
+{
+    if (f->fichier!=NULL)
+    {
+       switch (i)
+       {
+       case 0:
+        f->Entete.nbbloc=val;
+        break;
+       case 1:
+        f->Entete.cpt_insert=val;
+        break;
+       default:
+        printf("La caracteristique n'existe pas");
+       }
+
+    }
+    return -1;
+}

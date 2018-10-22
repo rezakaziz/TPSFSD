@@ -4,15 +4,15 @@
 
 // definir les constantes
 #define TAILLE_NOM 26
-#define TAILLE_BUF 255
+#define TAILLE_BUF 2
 #define TAILLE_NOM_VILLE 26
 
 // definir le format de la date
 typedef struct date date;
 struct date
 {
-    int jour;
-    int mois;
+    char jour;
+    char mois;
     int annee;
 };
 //definir la structure de l'enregistrement
