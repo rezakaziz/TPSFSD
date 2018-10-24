@@ -19,6 +19,6 @@ int Entete_TOF( TOF *f, int i );
 //affecter une valeur dans la ieme caractristique de fichier
 int Aff_entete_TOF( TOF *f,int i,int val );
 //Allouer un nouveau bloc dans un fichier TOF et retourne son numero
-int allocbloc(FILE *f);
+int allocbloc(TOF *f);
 
 #endif // MACHINE_ABS_TOF_H_INCLUDED
