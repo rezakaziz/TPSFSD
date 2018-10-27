@@ -13,7 +13,7 @@ int EcrireDir_TOF(TOF *f,int i, Buffer buf);
 //lire le contenue de fichier sequentiellement
 int LireSeq_TOF(FILE *F,Buffer buf );
 //ecriture sequentiel dans le fichier
-int EcrireSeq_TOF(FILE *F, Buffer buf );
+int EcrireSeq_TOF(TOF *F, Buffer buf );
 //retourner la taille de la i eme caracteristique de fichier
 int Entete_TOF( TOF *f, int i );
 //affecter une valeur dans la ieme caractristique de fichier

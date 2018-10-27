@@ -82,6 +82,21 @@ int EcrireDir_TOF(TOF *f,int i, Buffer buf)
     return -1;
 }
 
+//lecture sequentiel dans un fichier
+int LireSeq_TOF(FILE *F,Buffer buf )
+{
+    return 0;
+}
+int EcrireSeq_TOF(TOF *f, Buffer buf )
+{
+    if (f->fichier!=NULL)
+    {
+        fwrite(&buf,sizeof(Buffer),1,f->fichier);
+        Aff_entete_TOF(f,0,Entete_TOF(f,0)+1);
+        Aff_entete_TOF(f,1,Entete_TOF(f,1)+buf.nbelement);
+    }
+    return 1;
+}
 
 //retourner la taille de la i eme caracteristique de fichier
 int Entete_TOF( TOF *f, int i )

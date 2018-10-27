@@ -11,8 +11,8 @@
 typedef struct date date;
 struct date
 {
-    char jour;
-    char mois;
+    int jour;
+    int mois;
     int annee;
 };
 //definir la structure de l'enregistrement
