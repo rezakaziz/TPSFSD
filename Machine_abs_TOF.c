@@ -13,8 +13,7 @@ void Ouvrir_TOF(TOF *f, char nomfichier[TAILLE_NOM], char mode)
         f->fichier=fopen(nomfichier,"rb+");
         if (f->fichier!=NULL)
         {
-           /* f->Entete.cpt_insert=0;
-            f->Entete.nbbloc=0;*/
+
 
             rewind(f->fichier);
             fread(&f->Entete,sizeof(entete),1,f->fichier);
@@ -83,8 +82,9 @@ int EcrireDir_TOF(TOF *f,int i, Buffer buf)
 }
 
 //lecture sequentiel dans un fichier
-int LireSeq_TOF(FILE *F,Buffer buf )
+int LireSeq_TOF(TOF *f,Buffer *buf )
 {
+    fread(buf,sizeof(Buffer),1,f->fichier);
     return 0;
 }
 int EcrireSeq_TOF(TOF *f, Buffer buf )

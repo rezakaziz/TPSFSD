@@ -1,48 +1,48 @@
 Adrar
 Chlef
 Laghouat
-Oum El-Bouaghi
+Oum-El-Bouaghi
 Batna
-Béjaïa
+Bejaia
 Biskra
-Béchar
+Bechar
 Blida
 Bouira
 Tamanrasset
-Tébessa
+Tebessa
 Tlemcen
 Tiaret
-Tizi Ouzou
+Tizi-Ouzou
 Alger
 Djelfa
 Jijel
-Sétif
+Setif
 Saida
 Skikda
 Sidi Bel Abbes
 Annaba
 Guelma
 Constantine
-Médéa
+Medea
 Mostaganem
-M'Sila
+MSila
 Mascara
 Ouargla
 Oran
 El-Bayadh
 Illizi
-Bord-Bou-Arréridj
-Boumerdès
+Bord-Bou-Arreridj
+Boumerdes
 El-Taref
 Tindouf
 Tissemsilt
-El Oued
+El-Oued
 Khenchela
 Souk Ahras
 Tipaza
 Mila
-Aïn Defla
-Naâma
-Aïn Témouchent
-Ghardaïa
+Ain-Defla
+Naama
+Ain-Temouchent
+Ghardaia
 Relizane
